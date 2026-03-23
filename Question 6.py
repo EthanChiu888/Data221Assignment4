@@ -43,3 +43,12 @@ test_loss, test_accuracy = model.evaluate(X_test, y_test)
 
 # Report test accuracy
 print("Test Accuracy:", test_accuracy)
+
+# Discussion:
+# CNNs are preferred over fully connected networks for image data because they
+# can learn spatial features such as edges, shapes, and textures while using
+# fewer parameters.
+
+# In this task, the convolution layer learns useful visual patterns from the
+# clothing images, such as outlines, edges, and textures, which help the model
+# distinguish between the different Fashion MNIST categories.
