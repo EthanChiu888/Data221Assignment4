@@ -32,19 +32,17 @@ print("Test Accuracy:", test_accuracy)
 
 # Discussion:
 # In decision trees, entropy measures the amount of uncertainty or impurity
-# in a group of samples. A node has low entropy when most samples belong to
-# one class, and high entropy when the classes are mixed.
-#
-# The tree chooses splits that reduce entropy as much as possible, which means
-# it tries to create child nodes that are more pure than the parent node.
+# in a node. A node has low entropy when most samples belong to one class,
+# and high entropy when the classes are more mixed.
+
+# The decision tree selects splits that reduce entropy as much as possible.
 # This reduction in entropy is called information gain.
-#
-# To interpret the results:
-# - If training accuracy is much higher than test accuracy, that suggests overfitting.
-# - If both accuracies are high and fairly close, that suggests good generalization.
-#
-# For this dataset, a decision tree often gets very high training accuracy,
-# sometimes even 1.0, while the test accuracy is a bit lower. That usually
-# suggests some overfitting, because the model may memorize details of the
-# training data rather than generalizing perfectly to new data.
+
+# If the training accuracy is much higher than the test accuracy, that suggests
+# overfitting because the model may be learning the training data too closely.
+# If both accuracies are high and close together, that suggests good generalization.
+
+# The results suggest slight overfitting.
+# This is because the training accuracy is higher than the test accuracy, which means the model
+# fits the training data very well but does not perform quite as well on unseen data.
 
