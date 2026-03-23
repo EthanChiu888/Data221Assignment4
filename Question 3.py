@@ -48,6 +48,20 @@ print("\nTop 5 Most Important Features:")
 for i in range(5):
     print(f"{i+1}. {feature_names[indices[i]]}: {importances[indices[i]]:.4f}")
 
+# Discussion:
+# Controlling model complexity helps reduce overfitting because it prevents
+# the decision tree from becoming too deep and memorizing the training data.
+# A simpler tree is often better able to generalize to unseen test data.
+#
+# In this case, setting max_depth limits how many levels the tree can grow.
+# This usually lowers training accuracy slightly, but it can improve test
+# accuracy or make it closer to the training accuracy.
+#
+# Feature importance helps interpretability because it shows which features
+# the decision tree relied on most when making decisions.
+# This makes it easier to understand which variables were most influential
+# in the classification process.
+
 
 
 
