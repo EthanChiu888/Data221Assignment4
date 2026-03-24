@@ -44,17 +44,13 @@ print("Test Accuracy:", test_accuracy)
 
 # Discussion:
 # Feature scaling is necessary for neural networks because the model learns
-# by adjusting weights using optimization methods such as gradient descent.
-# If features are on very different scales, the optimization process can become
-# slow, unstable, or less effective because large-scale features may dominate
-# smaller-scale features.
-#
+# by adjusting weights through optimization methods such as gradient descent.
+# If features are on very different scales, the learning process can become
+# slower, less stable, and less effective because some features may dominate others.
 # Standardizing the features helps the neural network train more efficiently
-# and often improves performance.
-#
-# An epoch represents one complete pass through the entire training dataset
-# during neural network training. During each epoch, the model processes all
-# training examples and updates its weights to reduce prediction error.
-#
-# Multiple epochs allow the network to gradually improve its learned weights
+# and often improves model performance.
+# An epoch is one complete pass through the entire training dataset during
+# neural network training. In each epoch, the network processes all training
+# examples and updates its weights to reduce prediction error.
+# Multiple epochs allow the model to gradually improve its learned weights
 # and better fit the training data.
