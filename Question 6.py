@@ -20,8 +20,9 @@ X_train = X_train.reshape(-1, 28, 28, 1)
 X_test = X_test.reshape(-1, 28, 28, 1)
 
 # Build the CNN model
-model = Sequential([
-    Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)),
+cnn_model = Sequential([
+    tf.keras.Input(shape=(28, 28, 1)),
+    Conv2D(32, (3, 3), activation='relu'),
     MaxPooling2D(pool_size=(2, 2)),
     Flatten(),
     Dense(128, activation='relu'),
@@ -29,26 +30,28 @@ model = Sequential([
 ])
 
 # Compile the model
-model.compile(
+cnn_model.compile(
     optimizer='adam',
     loss='sparse_categorical_crossentropy',
     metrics=['accuracy']
 )
 
 # Train the model for at least 15 epochs
-model.fit(X_train, y_train, epochs=15, validation_split=0.1)
+cnn_model.fit(X_train, y_train, epochs=15, validation_split=0.1)
 
 # Evaluate the model on the test set
-test_loss, test_accuracy = model.evaluate(X_test, y_test)
+test_loss, test_accuracy = cnn_model.evaluate(X_test, y_test)
 
 # Report test accuracy
 print("Test Accuracy:", test_accuracy)
 
 # Discussion:
-# CNNs are preferred over fully connected networks for image data because they
-# can learn spatial features such as edges, shapes, and textures while using
-# fewer parameters.
+# CNNs are generally preferred over fully connected networks for image data
+# because they can automatically detect spatial patterns such as edges,
+# shapes, and textures. They also use fewer parameters by sharing weights,
+# which makes them more efficient and better suited for images.
 
-# In this task, the convolution layer learns useful visual patterns from the
-# clothing images, such as outlines, edges, and textures, which help the model
-# distinguish between the different Fashion MNIST categories.
+# In this task, the convolution layer is learning useful visual features
+# from the clothing images, such as edges, outlines, textures, and simple
+# shape patterns. These features help the network distinguish between the
+# different Fashion MNIST clothing categories.

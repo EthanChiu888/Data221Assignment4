@@ -27,7 +27,7 @@ X_train = X_train.reshape(-1, 28, 28, 1)
 X_test = X_test.reshape(-1, 28, 28, 1)
 
 # Build the CNN model
-model = Sequential([
+cnn_model = Sequential([
     tf.keras.Input(shape=(28, 28, 1)),
     Conv2D(32, (3, 3), activation='relu'),
     MaxPooling2D((2, 2)),
@@ -37,32 +37,32 @@ model = Sequential([
 ])
 
 # Compile the model
-model.compile(
+cnn_model.compile(
     optimizer='adam',
     loss='sparse_categorical_crossentropy',
     metrics=['accuracy']
 )
 
 # Train the model for at least 15 epochs
-model.fit(X_train, y_train, epochs=15, validation_split=0.1)
+cnn_model.fit(X_train, y_train, epochs=15, validation_split=0.1)
 
 # Generate predictions on the test set
-y_prob = model.predict(X_test)
-y_pred = np.argmax(y_prob, axis=1)
+y_pred_probabilities = cnn_model.predict(X_test)
+y_pred = np.argmax(y_pred_probabilities, axis=1)
 
 # Compute and display the confusion matrix
-cm = confusion_matrix(y_test, y_pred)
+conf_matrix = confusion_matrix(y_test, y_pred)
 
 print("Confusion Matrix:")
 print("Rows = Actual class, Columns = Predicted class")
-print(cm)
+print(conf_matrix)
 
 # Identify misclassified images
 misclassified_indices = np.where(y_pred != y_test)[0]
 
 print("\nNumber of misclassified images:", len(misclassified_indices))
 
-# Print details of first three misclassified images (UPGRADE)
+# Print details of first three misclassified images
 print("\nDetails of first three misclassified images:")
 for i in range(3):
     idx = misclassified_indices[i]
@@ -75,9 +75,7 @@ for i in range(3):
     idx = misclassified_indices[i]
     plt.subplot(1, 3, i + 1)
     plt.imshow(X_test[idx].reshape(28, 28), cmap='gray')
-    plt.title(
-        f"True: {class_names[y_test[idx]]}\nPredicted: {class_names[y_pred[idx]]}"
-    )
+    plt.title(f"True: {class_names[y_test[idx]]}\nPredicted: {class_names[y_pred[idx]]}")
     plt.axis("off")
 
 plt.tight_layout()
