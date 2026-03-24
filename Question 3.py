@@ -21,7 +21,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # Train a constrained Decision Tree model
-# Here, max_depth=3 is used to control tree complexity
+# max_depth=3 is used to control tree complexity
 constrained_model = DecisionTreeClassifier(
     criterion="entropy",
     max_depth=3,
@@ -41,12 +41,12 @@ print("Test Accuracy:", test_accuracy)
 importances = constrained_model.feature_importances_
 
 # Sort features by importance in descending order
-indices = np.argsort(importances)[::-1]
+sorted_indices = np.argsort(importances)[::-1]
 
 # Display the top five most important features
 print("\nTop 5 Most Important Features:")
 for i in range(5):
-    print(f"{i+1}. {feature_names[indices[i]]}: {importances[indices[i]]:.4f}")
+    print(f"{i+1}. {feature_names[sorted_indices[i]]}: {importances[sorted_indices[i]]:.4f}")
 
 # Discussion:
 # Controlling model complexity helps reduce overfitting because it prevents
@@ -57,8 +57,8 @@ for i in range(5):
 # This usually lowers training accuracy slightly, but it can improve test
 # accuracy or make it closer to the training accuracy.
 #
-# Feature importance helps interpretability because it shows which features
-# the decision tree relied on most when making decisions.
+# Feature importance contributes to interpretability because it shows which
+# features the decision tree relied on most when making decisions.
 # This makes it easier to understand which variables were most influential
 # in the classification process.
 
