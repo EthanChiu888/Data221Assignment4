@@ -34,10 +34,10 @@ tree_model.fit(X_train, y_train)
 # Predict on the test set
 y_pred_tree = tree_model.predict(X_test)
 
-# Compute confusion matrix
+# Compute confusion matrix for the constrained decision tree
 cm_tree = confusion_matrix(y_test, y_pred_tree)
 
-# Display confusion matrix
+# Display confusion matrix for the constrained decision tree
 print("Constrained Decision Tree Confusion Matrix:")
 print("Rows = Actual class, Columns = Predicted class")
 print(cm_tree)
@@ -62,10 +62,10 @@ nn_model.fit(X_train_scaled, y_train)
 # Predict on the test set
 y_pred_nn = nn_model.predict(X_test_scaled)
 
-# Compute confusion matrix
+# Compute confusion matrix for the neural network
 cm_nn = confusion_matrix(y_test, y_pred_nn)
 
-# Display confusion matrix
+# Display confusion matrix for the neural network
 print("\nNeural Network Confusion Matrix:")
 print("Rows = Actual class, Columns = Predicted class")
 print(cm_nn)
@@ -75,11 +75,10 @@ print(cm_nn)
 # 1 = benign
 
 # Discussion:
-# I would prefer the constrained decision tree for this task as its performance
+# I would prefer the constrained decision tree for this task if its performance
 # is similar to the neural network, because it is easier to interpret and explain.
-# In a medical classification problem, interpretability is valuable because it helps
+# In a medical classification problem, interpretability is important because it helps
 # us understand which features influenced the prediction.
-
 # Advantage of the constrained decision tree:
 # - It is easy to interpret because the splits and feature importance can be examined directly.
 # Limitation of the constrained decision tree:
@@ -88,9 +87,10 @@ print(cm_nn)
 # - It can learn more complex relationships in the data and may achieve strong predictive performance.
 # Limitation of the neural network:
 # - It is less interpretable, since its decisions are harder to explain compared with a decision tree.
-# When comparing the confusion matrices, an especially important issue is whether
-# malignant cases are misclassified as benign, because that is the more serious error
-# in a cancer diagnosis setting.
+# From the confusion matrices, both models may perform well, but the most important
+# issue is minimizing false negatives, where a malignant case is predicted as benign.
+# If both models have similar error patterns, the constrained decision tree is preferred
+# because it provides good performance while remaining easier to interpret.
 
 
 
